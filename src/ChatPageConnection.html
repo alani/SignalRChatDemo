@@ -14,6 +14,7 @@
     
     <script src="Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery.signalR-0.5.3.js" type="text/javascript"></script>
+    <script src="Scripts/json2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             var connection = $.connection('/chat');
@@ -31,8 +32,12 @@
             });
 
             $("#sendChat").click(function() {
-                connection.send($("#chatbox").val());
+                connection.send(window.JSON.stringify({ type: 0, data: $("#chatbox").val() }));
                 $("#chatbox").val('');
+            });
+
+            $("#sendNotification").click(function() {
+                connection.send(window.JSON.stringify({ type: 1, data: "" }));
             });
         });
     </script>
