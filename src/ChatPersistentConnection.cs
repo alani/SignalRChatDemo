@@ -20,6 +20,7 @@ namespace SignalRChatDemo
             switch(message.Type)
             {
                 case MessageType.Standard:
+                    Connection.Send(connectionId, "From SERVER:  You broadcasted to clients!");
                     Connection.Broadcast("Connection " + connectionId + ":\t" + message.Data);
                     break;
                 case MessageType.Broadcast:
