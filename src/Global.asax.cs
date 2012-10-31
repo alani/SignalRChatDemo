@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using SignalR;
 
 namespace SignalRChatDemo
 {
@@ -18,7 +19,9 @@ namespace SignalRChatDemo
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            // RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            RouteTable.Routes.MapConnection<ChatPersistentConnection>("chat", "chat/{*operation}");
         }
     }
 }
